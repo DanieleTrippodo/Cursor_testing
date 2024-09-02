@@ -4,92 +4,82 @@ body, html {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    transition: background-color 1s ease;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    background-color: #000;
+    color: #00ffc3;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#spider {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.body {
+#app {
+    position: relative;
     width: 100%;
     height: 100%;
-    background-color: black;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.2s ease;
+    overflow: hidden;
 }
 
-.eye {
+#energy-sphere {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: white;
-    border-radius: 50%;
-    top: 12px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
 }
 
-.pupil {
-    width: 6px;
-    height: 6px;
-    background-color: black;
-    border-radius: 50%;
+.core {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    transition: transform 0.1s ease-out;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #00ffc3, #00685b);
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00ffc3, 0 0 50px #00ffc3, 0 0 100px #00ffc3;
+    z-index: 1;
 }
 
-.eye.left {
-    left: 10px;
-}
-
-.eye.right {
-    right: 10px;
-}
-
-.leg {
+.glow {
     position: absolute;
-    width: 30px;
-    height: 4px;
-    background-color: black;
-    transform-origin: top left;
-    animation: legMovement 1s infinite ease-in-out;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(0,255,195,0.5), rgba(0,255,195,0));
+    border-radius: 50%;
+    top: -35px;
+    left: -35px;
+    filter: blur(15px);
+    z-index: 0;
 }
 
-.leg1 { top: 10px; left: -20px; transform: rotate(30deg); }
-.leg2 { top: 30px; left: -20px; transform: rotate(60deg); }
-.leg3 { top: 10px; right: -20px; transform: rotate(-30deg); }
-.leg4 { top: 30px; right: -20px; transform: rotate(-60deg); }
-.leg5 { bottom: 10px; left: -20px; transform: rotate(-30deg); }
-.leg6 { bottom: 30px; left: -20px; transform: rotate(-60deg); }
-.leg7 { bottom: 10px; right: -20px; transform: rotate(30deg); }
-.leg8 { bottom: 30px; right: -20px; transform: rotate(60deg); }
-
-@keyframes legMovement {
-    0%, 100% { transform: rotate(5deg); }
-    50% { transform: rotate(-5deg); }
+.particles {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(0,255,195,0.8), rgba(0,255,195,0));
+    border-radius: 50%;
+    top: -35px;
+    left: -35px;
+    filter: blur(15px);
+    animation: pulse 2s infinite;
+    z-index: 2;
 }
 
-@keyframes particleMovement {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-50px) scale(0.5); }
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .particle {
     position: absolute;
     width: 5px;
     height: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #00ffc3;
     border-radius: 50%;
-    animation: particleMovement 1s forwards;
+    animation: particleMovement 1.5s forwards;
+}
+
+@keyframes particleMovement {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-50px) scale(0.5); }
 }
