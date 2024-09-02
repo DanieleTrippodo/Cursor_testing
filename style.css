@@ -4,17 +4,17 @@ body, html {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    transition: background-color 0.5s ease;
+    transition: background-color 1s ease;
     background: linear-gradient(45deg, #ff9a9e, #fad0c4);
 }
 
 #spider {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .body {
@@ -24,34 +24,36 @@ body, html {
     border-radius: 50%;
     position: relative;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease;
 }
 
 .eye {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background-color: white;
     border-radius: 50%;
-    top: 8px;
+    top: 12px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .pupil {
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background-color: black;
     border-radius: 50%;
     position: absolute;
-    top: 2px;
-    left: 2px;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.1s ease-out;
 }
 
 .eye.left {
-    left: 8px;
+    left: 10px;
 }
 
 .eye.right {
-    right: 8px;
+    right: 10px;
 }
 
 .leg {
@@ -78,14 +80,16 @@ body, html {
     50% { transform: rotate(-5deg); }
 }
 
-@keyframes tremble {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(1px, -1px); }
-    50% { transform: translate(0, -1px); }
-    75% { transform: translate(-1px, 1px); }
-    100% { transform: translate(0, 0); }
+@keyframes particleMovement {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-50px) scale(0.5); }
 }
 
-.tremble {
-    animation: tremble 0.1s infinite;
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: particleMovement 1s forwards;
 }
