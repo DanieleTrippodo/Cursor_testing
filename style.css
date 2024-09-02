@@ -5,7 +5,7 @@ body, html {
     width: 100%;
     overflow: hidden;
     transition: background-color 0.5s ease;
-    background-color: #a0c4ff;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
 }
 
 #spider {
@@ -14,6 +14,7 @@ body, html {
     height: 40px;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .body {
@@ -22,27 +23,69 @@ body, html {
     background-color: black;
     border-radius: 50%;
     position: relative;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.eye {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    top: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pupil {
+    width: 4px;
+    height: 4px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.eye.left {
+    left: 8px;
+}
+
+.eye.right {
+    right: 8px;
 }
 
 .leg {
     position: absolute;
-    width: 20px;
+    width: 30px;
     height: 4px;
     background-color: black;
     transform-origin: top left;
-    animation: legMovement 0.5s infinite;
+    animation: legMovement 1s infinite ease-in-out;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.leg1 { top: 10px; left: -20px; transform: rotate(45deg); }
+.leg1 { top: 10px; left: -20px; transform: rotate(30deg); }
 .leg2 { top: 30px; left: -20px; transform: rotate(60deg); }
-.leg3 { top: 10px; right: -20px; transform: rotate(-45deg); }
+.leg3 { top: 10px; right: -20px; transform: rotate(-30deg); }
 .leg4 { top: 30px; right: -20px; transform: rotate(-60deg); }
-.leg5 { bottom: 10px; left: -20px; transform: rotate(-45deg); }
+.leg5 { bottom: 10px; left: -20px; transform: rotate(-30deg); }
 .leg6 { bottom: 30px; left: -20px; transform: rotate(-60deg); }
-.leg7 { bottom: 10px; right: -20px; transform: rotate(45deg); }
+.leg7 { bottom: 10px; right: -20px; transform: rotate(30deg); }
 .leg8 { bottom: 30px; right: -20px; transform: rotate(60deg); }
 
 @keyframes legMovement {
     0%, 100% { transform: rotate(5deg); }
     50% { transform: rotate(-5deg); }
+}
+
+@keyframes tremble {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(1px, -1px); }
+    50% { transform: translate(0, -1px); }
+    75% { transform: translate(-1px, 1px); }
+    100% { transform: translate(0, 0); }
+}
+
+.tremble {
+    animation: tremble 0.1s infinite;
 }

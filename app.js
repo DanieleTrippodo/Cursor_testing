@@ -7,7 +7,8 @@ createApp({
             mouseY: 0,
             spiderX: window.innerWidth / 2,
             spiderY: window.innerHeight / 2,
-            delayFactor: 0.03 // velocità del ragnetto
+            delayFactor: 0.008, // Velocità di inseguimento più lenta
+            isClose: false
         };
     },
     computed: {
@@ -32,6 +33,14 @@ createApp({
             this.spiderY += dy * this.delayFactor;
 
             document.getElementById('spider').style.transform = `translate(${this.spiderX}px, ${this.spiderY}px)`;
+
+            if (this.distance < 100) {
+                this.isClose = true;
+                document.getElementById('spider').classList.add('tremble');
+            } else {
+                this.isClose = false;
+                document.getElementById('spider').classList.remove('tremble');
+            }
         }
     },
     mounted() {
@@ -45,7 +54,7 @@ createApp({
             document.body.style.backgroundColor = this.backgroundColor;
             requestAnimationFrame(animateSpider);
         };
-        
+
         animateSpider();
     }
 }).mount('#app');
