@@ -12,11 +12,82 @@ body, html {
     align-items: center;
 }
 
+.crt {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+    filter: contrast(1.2) brightness(0.9);
+}
+
+.crt::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 2px);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.crt::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.03);
+    mix-blend-mode: overlay;
+    z-index: 1000;
+    pointer-events: none;
+    animation: flicker 0.08s infinite alternate;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.9; }
+    100% { opacity: 1; }
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    background: radial-gradient(circle, rgba(0,0,0,0.5), rgba(0,0,0,1));
+}
+
+.background::before, .background::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(0, 255, 195, 0.1) 11px, rgba(0, 255, 195, 0.1) 12px);
+    animation: scroll 5s linear infinite;
+}
+
+.background::after {
+    animation-direction: reverse;
+    opacity: 0.5;
+}
+
+@keyframes scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
 #app {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    z-index: 1;
 }
 
 #energy-sphere {
@@ -79,6 +150,17 @@ body, html {
     border-radius: 50%;
     box-shadow: 0 0 15px #00ffc3, 0 0 50px #00ffc3, 0 0 100px #00ffc3;
     z-index: 5;
+}
+
+.enemy {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ff5733;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ff5733, 0 0 50px #ff5733, 0 0 100px #ff5733;
+    z-index: 5;
+    transition: transform 0.2s linear;
 }
 
 #score, #timer {
